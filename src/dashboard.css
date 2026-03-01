@@ -1,16 +1,30 @@
+/* ===== Global ===== */
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f5f7fa;
 }
 
+/* ===== Main Layout Wrapper ===== */
 .dashboard {
-   width: 100%;
-  max-width: 1400px;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 40px;
 }
 
+/* ===== Headings ===== */
+h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+h2 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* ===== Cards Section ===== */
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -21,16 +35,22 @@ body {
 
 .card {
   background: white;
-  border-radius: 10px;
-  padding: 16px;
+  border-radius: 12px;
+  padding: 18px;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
 .card h3 {
   margin: 0;
   font-size: 14px;
-  color: #555;
+  color: #666;
 }
 
 .card p {
@@ -39,11 +59,7 @@ body {
   font-weight: bold;
 }
 
-.section {
-  margin-top: 40px;
-}
-
-/* Color coding */
+/* ===== Color Coding ===== */
 .card.pass {
   border-left: 5px solid #28a745;
 }
@@ -68,47 +84,7 @@ body {
   color: #007bff;
 }
 
-h1 {
-  font-size: 28px;
-  margin-bottom: 10px;
-  color: #222;
-}
-
-h2 {
-  margin-bottom: 15px;
-  color: #333;
-}
-
-.dashboard {
-  max-width: 1200px;
-  margin: auto;
-  padding: 24px;
-}
-
-.section {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 40px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-/* Improve card hover */
-.card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-/* Responsive charts */
-canvas {
-  max-width: 100% !important;
-}
-
-
+/* ===== Charts Section ===== */
 .charts-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -116,11 +92,31 @@ canvas {
   margin-top: 40px;
 }
 
+.section {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+}
+
+/* Responsive layout */
+@media (min-width: 900px) {
+  .charts-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Make charts responsive */
+canvas {
+  max-width: 100% !important;
+}
+
+/* ===== Navbar ===== */
 .navbar {
   background-color: #1f2937;
-  padding: 12px 20px;
+  padding: 14px 24px;
   display: flex;
-  gap: 20px;
+  gap: 30px;
 }
 
 .navbar a {
@@ -131,10 +127,4 @@ canvas {
 
 .navbar a:hover {
   text-decoration: underline;
-}
-
-@media (min-width: 900px) {
-  .charts-grid {
-    grid-template-columns: 1fr 1fr;
-  }
 }
