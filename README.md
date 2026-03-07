@@ -48,25 +48,25 @@ AI Test Generator (Groq LLM)
 
 ## Dashboard
 
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](screenshots/dashboard.jpeg)
 
 ---
 
 ## Test Case Generator
 
-![Test Case Generator](screenshots/test-case-generator.png)
+![Test Case Generator](screenshots/test-case-generator.jpeg)
 
 ---
 
 ## AI Generated Test Cases
 
-![AI Test Cases](screenshots/ai-testcases.png)
+![AI Test Cases](screenshots/ai-testcases.jpeg)
 
 ---
 
 ## AI Automation Script Generator
 
-![AI Automation](screenshots/ai-automation.png)
+![AI Automation](screenshots/ai-automation.jpeg)
 ---
 
 🚀 Version 1 – Smart Test Automation Dashboard
