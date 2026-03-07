@@ -44,7 +44,29 @@ React Dashboard
         ↓
 AI Test Generator (Groq LLM)
 ```
+# 📸 Application Screenshots
 
+## Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+---
+
+## Test Case Generator
+
+![Test Case Generator](screenshots/test-case-generator.png)
+
+---
+
+## AI Generated Test Cases
+
+![AI Test Cases](screenshots/ai-testcases.png)
+
+---
+
+## AI Automation Script Generator
+
+![AI Automation](screenshots/ai-automation.png)
 ---
 
 🚀 Version 1 – Smart Test Automation Dashboard
