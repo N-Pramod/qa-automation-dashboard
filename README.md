@@ -28,7 +28,15 @@ This project solves these problems by:
 * Generating automation scripts using AI
 
 ---
+## 📂 Project Structure
 
+qa-automation-dashboard/
+├── backend/ (Spring Boot APIs)
+├── frontend/ (React UI)
+├── screenshots/ (Application images)
+├── README.md
+
+----
 🏗️ System Architecture
 
 ```
@@ -43,6 +51,7 @@ PostgreSQL Database
 React Dashboard
         ↓
 AI Test Generator (Groq LLM)
+
 ```
 # 📸 Application Screenshots
 
@@ -128,6 +137,15 @@ AI Test Case Generator
 
 Generates test cases from requirements using AI.
 
+🔄 Workflow
+
+1. Automation tests run in Jenkins
+2. Test results are sent to the Spring Boot backend
+3. Backend processes and stores execution data
+4. React dashboard displays analytics
+5. AI modules generate test cases and automation scripts
+
+
 Example output:
 
 ```
@@ -191,17 +209,15 @@ AI Integration
 
 ---
 
- 📊 Key Features
+ ✨ Key Features
 
-✔ Automation analytics dashboard
-✔ Jenkins CI integration
-✔ TestNG report ingestion
-✔ Manual test case generation
-✔ Automation code generation
-✔ AI-powered test case generator
-✔ AI automation script generator
-✔ PostgreSQL persistence
-✔ Excel export for test cases
+- 📊 Automation analytics dashboard (pass/fail trends, execution       metrics)
+- 🤖 AI-powered test case generation
+- 🧪 Manual test case generator
+- ⚙️ AI automation script generator (Selenium + TestNG)
+- 📁 Export test cases to Excel
+- 🔗 Jenkins CI integration
+- 🗄️ PostgreSQL data persistence
 
 ---
 
