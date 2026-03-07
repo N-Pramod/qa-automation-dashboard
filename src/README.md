@@ -1,115 +1,269 @@
-# 🧪 QA Automation Dashboard
+🤖 AI-Powered QA Automation Dashboard
 
-## 📌 Overview
-The **QA Automation Dashboard** is an end-to-end platform designed to centralize automation test execution results, CI pipeline data, and quality metrics into a single, easy-to-understand dashboard.
+📌 Overview
 
-It eliminates the need to manually inspect Jenkins logs or raw test reports by providing real-time analytics, trends, and visual insights for QA teams.
+The **AI-Powered QA Automation Dashboard** is an end-to-end platform that centralizes automation test execution results, CI pipeline data, and AI-assisted test generation into a single dashboard.
+
+It eliminates the need to manually inspect Jenkins logs or raw test reports while also helping QA engineers generate **manual test cases, automation scripts, and AI-generated test scenarios**.
+
+This platform combines **automation analytics + AI-driven QA assistance** to improve testing efficiency and visibility.
 
 ---
 
-## 🎯 Problem Statement
+🎯 Problem Statement
+
 In many QA projects:
-- Automation results are scattered across Jenkins logs and reports
-- QA leads lack a centralized view of test health
-- Identifying trends and recurring failures is time-consuming
 
-This project solves that by:
-- Automatically collecting test execution data
-- Persisting results in a database
-- Visualizing metrics through a dashboard
+* Automation results are scattered across Jenkins logs and reports
+* QA leads lack a centralized view of test health
+* Identifying trends and recurring failures is time-consuming
+* Writing manual test cases and automation scripts is repetitive
+
+This project solves these problems by:
+
+* Centralizing automation execution analytics
+* Persisting execution data in a database
+* Visualizing automation health metrics
+* Generating manual test cases automatically
+* Generating automation scripts using AI
 
 ---
 
-## 🏗️ High-Level Architecture
+🏗️ System Architecture
 
+```
 Selenium + TestNG
-↓
-Jenkins
-↓
+        ↓
+Jenkins CI
+        ↓
 Spring Boot Backend
-↓
+        ↓
 PostgreSQL Database
-↓
+        ↓
 React Dashboard
-
-
----
-
-## 🚀 Version 1 – Smart Test Automation Dashboard (CORE)
-
-### ✅ Features Implemented
-
-### 🔹 Automation Execution Ingestion
-- Accepts test execution data via REST APIs
-- Supports TestNG XML report parsing (`testng-results.xml`)
-- Automatically determines PASS / FAIL status
-
-### 🔹 Jenkins CI Integration
-- Jenkins job runs automation tests
-- Posts execution results to backend APIs
-- Dashboard updates automatically after each CI run
-- Handles failed builds gracefully
-
-### 🔹 Backend (Spring Boot)
-- REST APIs for executions and analytics
-- Spring Data JPA for persistence
-- PostgreSQL database integration
-- Auto schema generation using Hibernate
-
-### 🔹 Analytics & Metrics
-- Total runs
-- Passed runs
-- Failed runs
-- Pass percentage
-- Failure rate
-- Execution trend over time
-- Project-wise pass percentage
-
-### 🔹 Frontend Dashboard (React)
-- Summary cards for key metrics
-- Execution trend chart
-- Project-wise analytics chart
-- Clean and responsive UI
-- Color-coded pass/fail indicators
+        ↓
+AI Test Generator (Groq LLM)
+```
 
 ---
 
-## 🧰 Tech Stack
+🚀 Version 1 – Smart Test Automation Dashboard
 
-### 🔹 Automation & CI
-- Selenium
-- TestNG
-- Jenkins
-- Maven
+Features
 
-### 🔹 Backend
-- Java
-- Spring Boot
-- Spring Data JPA
-- PostgreSQL
+Automation Execution Ingestion
 
-### 🔹 Frontend
-- React
-- Axios
-- Chart.js
+* Accepts test execution data via REST APIs
+* Supports TestNG XML report parsing (`testng-results.xml`)
+* Automatically determines PASS / FAIL status
+
+Jenkins CI Integration
+
+* Jenkins job runs automation tests
+* Sends execution results to backend APIs
+* Dashboard updates automatically after each CI run
+
+Automation Analytics
+
+* Total execution runs
+* Passed runs
+* Failed runs
+* Pass percentage
+* Failure rate
+* Execution trend chart
+* Project-wise pass percentage
+
+Frontend Dashboard
+
+* Summary analytics cards
+* Trend visualization charts
+* Project-level analytics
+* Clean responsive UI
 
 ---
 
-## ⚙️ Setup Instructions (Local)
+🚀 Version 2 – Test Case Generator
 
-### 🗄️ Database Setup
-```sql
+This module allows QA engineers to generate **manual and automation test cases from requirements**.
+
+Features
+
+* Requirement management (Create / Edit / Delete)
+* Automatic manual test case generation
+* Automation skeleton code generation
+* Test case export to Excel
+* Requirement-based test case organization
+
+---
+
+🚀 Version 3 – AI QA Copilot
+
+This version integrates **Large Language Models (LLM)** to generate intelligent QA artifacts.
+
+AI Capabilities
+
+AI Test Case Generator
+
+Generates test cases from requirements using AI.
+
+Example output:
+
+```
+Test Case: Verify login with valid credentials
+Category: Positive
+Priority: High
+```
+
+AI Automation Script Generator
+
+Generates Selenium + TestNG automation scripts automatically.
+
+Example output:
+
+```java
+@Test
+public void verifyLoginValidUser(){
+
+driver.get("loginPage");
+
+driver.findElement(By.id("username")).sendKeys("user");
+
+driver.findElement(By.id("password")).sendKeys("password");
+
+driver.findElement(By.id("loginButton")).click();
+
+Assert.assertTrue(driver.getTitle().contains("Dashboard"));
+
+}
+```
+
+---
+
+🧰 Tech Stack
+
+Automation & CI
+
+* Selenium
+* TestNG
+* Jenkins
+* Maven
+
+Backend
+
+* Java
+* Spring Boot
+* Spring Data JPA
+* PostgreSQL
+* REST APIs
+
+Frontend
+
+* React
+* Axios
+* Chart.js
+
+AI Integration
+
+* Groq API
+* Llama 3 LLM
+
+---
+
+ 📊 Key Features
+
+✔ Automation analytics dashboard
+✔ Jenkins CI integration
+✔ TestNG report ingestion
+✔ Manual test case generation
+✔ Automation code generation
+✔ AI-powered test case generator
+✔ AI automation script generator
+✔ PostgreSQL persistence
+✔ Excel export for test cases
+
+---
+
+⚙️ Local Setup Instructions
+
+1️⃣ Clone the repository
+
+```
+git clone https://github.com/YOUR_USERNAME/qa-automation-dashboard.git
+```
+
+---
+
+2️⃣ Database Setup
+
+Create database in PostgreSQL:
+
+```
 CREATE DATABASE qa_dashboard;
-Configure application.properties:
+```
+
+Update `application.properties`:
+
+```
 spring.datasource.url=jdbc:postgresql://localhost:5432/qa_dashboard
 spring.datasource.username=postgres
 spring.datasource.password=postgres
+```
 
-Run backend using mvn spring-boot:run
-Run frontend using npm install and npm run dev
+---
 
-Status:
-Version 1 completed and interview-ready
+3️⃣ Run Backend
 
-Author
-Pramod N – QA Engineer | Automation | CI/CD | Test Analytics
+```
+mvn spring-boot:run
+```
+
+Backend runs on:
+
+```
+http://localhost:8080
+```
+
+---
+
+4️⃣ Run Frontend
+
+```
+npm install
+npm run dev
+```
+
+Frontend runs on:
+
+```
+http://localhost:5173
+```
+
+---
+
+📈 Example Dashboard Metrics
+
+The dashboard displays:
+
+* Automation pass rate
+* Failure analytics
+* Execution trends
+* Project-wise test health
+* Test case generation metrics
+
+---
+
+🔮 Future Improvements
+
+* Role-based authentication
+* Cloud deployment
+* Advanced AI test generation
+* Automated defect prediction
+* Test coverage heatmaps
+
+---
+
+👨‍💻 Author
+
+PRAMOD N
+
+QA Engineer | Automation | CI/CD | AI-assisted Testing
