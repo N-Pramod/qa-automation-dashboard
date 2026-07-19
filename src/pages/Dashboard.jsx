@@ -32,10 +32,22 @@ function Dashboard() {
   const [projectWise, setProjectWise] = useState([]);
   const [testCaseSummary, setTestCaseSummary] = useState(null);
 
+  // ✅ Recent runs (dynamic rendering)
+  const [recentRuns, setRecentRuns] = useState([]);
+
   useEffect(() => {
+
+  const fetchData = () => {
+
+    // 🔹 Summary
     axios.get("http://localhost:8080/executions/summary")
       .then(res => setSummary(res.data));
 
+    // 🔹 Recent Runs
+    axios.get("http://localhost:8080/executions/recent")
+      .then(res => setRecentRuns(res.data));
+
+    // 🔹 Other APIs (keep if already there)
     axios.get("http://localhost:8080/executions/analytics/pass-percentage")
       .then(res => setPassAnalytics(res.data));
 
@@ -50,8 +62,18 @@ function Dashboard() {
 
     axios.get("http://localhost:8080/testcases/analytics/summary")
       .then(res => setTestCaseSummary(res.data));
-  }, []);
+  };
 
+  // 🔹 Call immediately
+  fetchData();
+
+  // 🔹 Call every 5 seconds
+  const interval = setInterval(fetchData, 5000);
+
+  // 🔹 Cleanup (important)
+  return () => clearInterval(interval);
+
+}, []);
   if (!summary || !passAnalytics || !failureAnalytics) {
     return <p style={{ padding: "20px" }}>Loading dashboard...</p>;
   }
@@ -85,9 +107,13 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
-      <h1>QA Automation Dashboard</h1>
 
-      {/* Version 1 cards */}
+      <h1>QA Automation Dashboard</h1>
+      <p style={{ color: "#666", marginBottom: "20px" }}>
+        Monitor automation performance and recent executions
+      </p>
+
+      {/* Cards */}
       <div className="cards">
         <Card title="Total Runs" value={summary.totalRuns} type="info" />
         <Card title="Passed Runs" value={summary.passedRuns} type="pass" />
@@ -104,7 +130,7 @@ function Dashboard() {
         />
       </div>
 
-      {/* Version 2 cards */}
+      {/* Test Case Summary */}
       {testCaseSummary && (
         <div className="cards">
           <Card title="Requirements" value={testCaseSummary.totalRequirements} type="info" />
@@ -114,15 +140,52 @@ function Dashboard() {
       )}
 
       <div className="charts-grid">
+
+        {/* Execution Trend */}
         <div className="section">
           <h2>Execution Trend</h2>
           <Line data={trendData} />
         </div>
 
+        {/* Recent Test Runs */}
+        <div className="section">
+          <h2>Recent Test Runs</h2>
+
+          <table className="runs-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Project</th>
+                <th>Duration</th>
+                <th>Status</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+
+            <tbody>
+  {recentRuns.map(run => (
+    <tr key={run.id}>
+      <td>{run.id}</td>
+      <td>{run.project}</td>
+      <td>{run.duration}</td>
+      <td>
+        <span className={run.status === "PASSED" ? "badge-pass" : "badge-fail"}>
+          {run.status}
+        </span>
+      </td>
+      <td>{run.executedAt}</td>
+    </tr>
+  ))}
+</tbody>
+          </table>
+        </div>
+
+        {/* Project-wise Chart */}
         <div className="section">
           <h2>Project-wise Pass Percentage</h2>
           <Bar data={projectData} />
         </div>
+
       </div>
     </div>
   );
